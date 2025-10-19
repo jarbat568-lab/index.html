@@ -1,0 +1,172 @@
+<!doctype html>
+
+<html lang="mn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Романтик - Нүүр хэсэг нууц үг</title>
+  <!-- Google font (works when online) -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #ff9a9e; /* soft rose */
+      --bg2: #fecfef; /* pink */
+      --accent: #ff6b81; /* deeper rose */
+      --card: rgba(255,255,255,0.85);
+      --glass: rgba(255,255,255,0.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:#3a2b2b;
+    }.container{
+  width:100%;
+  max-width:880px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+  border-radius:18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  overflow:hidden;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:28px 32px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px);
+}
+
+.logo{
+  font-family: 'Great Vibes', cursive;
+  font-size:36px;
+  color:var(--accent);
+  letter-spacing:0.6px;
+}
+
+.nav{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.pass-wrap{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+input[type="password"]{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.06);
+  min-width:160px;
+  font-size:15px;
+  outline:none;
+  background:transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+button{
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  background:var(--accent);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(255,107,129,0.28);
+}
+
+main{
+  padding:48px 32px 64px;
+  text-align:center;
+}
+
+.message{
+  margin-top:18px;
+  font-size:20px;
+  padding:18px 14px;
+  border-radius:12px;
+  background:var(--card);
+  display:inline-block;
+  min-width:220px;
+}
+
+.heart{
+  display:inline-block;
+  font-size:22px;
+  margin-left:6px;
+  transform:translateY(1px);
+}
+
+/* small screens */
+@media (max-width:560px){
+  header{padding:18px}
+  .logo{font-size:28px}
+  input[type="password"]{min-width:120px}
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Mиний Сэтгэл</div><nav class="nav" aria-label="Эхлэх">
+    <div class="pass-wrap">
+      <!-- Password form in header -->
+      <form id="passForm">
+        <label for="pwd" class="sr-only">Нууц үг</label>
+        <input id="pwd" name="pwd" type="password" placeholder="Нууц үг" autocomplete="off" required />
+        <button type="submit">Шалгах</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <h1>Зөвхөн чамд зориулав  </h1>
+  <p>Нууц үг оруулснаар  мэндчилгээг харуулна.</p>
+
+  <div id="output" class="message" aria-live="polite">Нууц үг оруулна уу</div>
+</main>
+
+  </div>  <script>
+    // Та энд нууц үгийг өөрчилж болно
+    const CORRECT = '9439'; // <--- нууц үг
+
+    const form = document.getElementById('passForm');
+    const input = document.getElementById('pwd');
+    const output = document.getElementById('output');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const val = input.value.trim();
+
+      if(val === CORRECT){
+        // Амжилттай учраас мэндчилгээг харуулна
+        output.textContent = 'Hi crush❤️ Үнэхээр хөөрхөн юма. IG хаягаа өгч болох уу';
+        // Бага зэрэг эффектийн хувьд зөөлөн анимаци
+        output.style.transform = 'scale(1.02)';
+        setTimeout(()=> output.style.transform = 'scale(1)', 220);
+
+        // зорилгод нийцүүлэн нууц үг орсны дараа талбар хоослохыг хүсвэл:
+        // input.value = '';
+
+      } else {
+        output.textContent = 'Нууц үг буруу байна';
+        input.focus();
+      }
+    });
+
+    // Enter дарсан тохиолдолд ажиллана (submit дээр тулгуурласан)
+  </script></body>
+</html>
